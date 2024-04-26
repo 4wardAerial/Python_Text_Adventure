@@ -4,7 +4,7 @@
 ### What? A game?
 
 Ok, calling it a game might be an exaggeration. This is just a small side project made by me to learn a bit more about python and GitHub.
-I decided on a small game because I've already tried multiple times to do it before (on C++) but either failed or just abandoned it,
+I decided on a small game because I've already tried multiple times to do it before (on C++) but either failed or just abandoned it midway through,
 so now I've commited myself to actually finish it for once, hence this repository: *I wanted to get serious*.
 
 ---
