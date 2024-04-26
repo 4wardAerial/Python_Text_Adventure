@@ -1,0 +1,19 @@
+Adventure.py to do list:
+
+# BIG GOALS
+> add tavern
+> add dating sim
+> add pokémon encounter and battle
+
+# MEDIUM GOALS
+> add menu
+> add language options
+> add guide
+> add interactive bag
+> add credits
+> add wait time speed config
+
+# SMALL GOALS
+> add potato_in_bag bool
+> check text in farm
+> change some deaths
