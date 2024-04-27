@@ -3,21 +3,21 @@ import random
 
 
 def print_fast(text):
-    """Imprime e dá um intervalo de tempo. Usado para pequenos textos
+    """Prints and waits a small interval. Used for quick texts.
     """
     print(text)
     time.sleep(1)
 
 
 def print_med(text):
-    """Imprime e dá um intervalo de tempo um pouco maior. Usado para diálogos
+    """Print and waits a slight bigger interval. Used for dialogues.
     """
     print(text)
     time.sleep(2)
 
 
 def print_long(text):
-    """Imprime e dá um intervalo longo. Usado para pausas dramáticas
+    """Prints and waits a big interval. Used for dramatic pauses.
     """
     print(text)
     time.sleep(4)
@@ -35,7 +35,7 @@ print_med("\n- Agora, {}, sua aventura pode começar...".format(name))
 deaths = 0
 is_dead = False
 
-bag = []
+bag = ["batata", "barco"]
 money = 0
 
 shop = ""
@@ -55,7 +55,7 @@ farm_visits = 0
 
 
 def death_messages(num):
-    """Escreve uma mensagem de game over formatada.
+    """Prints out a death message and the total number of endings found.
     """
     global deaths
     deaths += 1
@@ -75,7 +75,7 @@ def death_messages(num):
 
 
 def input_error():
-    """Escolhe uma mensagem de erro para quando o usuário tenta entrar com algo que não é uma escolha.
+    """Randomly picks an error message to print if the user inputs something that they shouldn't.
     """
     errors = ["> Isso não é válido agora, ",
               "> Acho que não dá para fazer isso agora, ",
@@ -90,8 +90,45 @@ def input_error():
     print_fast(random.choice(errors) + "{}.".format(name))
 
 
+def death_check():
+    """Checks if the player can and wants to continue playing after a death; if not, ends the game.
+    """
+    global is_dead
+    global bag
+
+    if is_dead:
+        time.sleep(3)
+        print_med("\n- Parece-me que sua aventura chegou ao fim...")
+
+        if "batata" in bag:
+            print_med("- Mas vejo que já conseguiu....")
+            print_med("- ...ela.")
+            print_med(
+                "- Pois bem, se você quiser, eu posso te levar de volta ao início. Ela ainda tem um destino para cumprir.")
+            print("- O que me diz? Sim ou não? Pense bem.")
+            reset = input(">>> Vai continuar? ").lower()
+
+            if reset == "sim":
+                is_dead = False
+                time.sleep(1)
+                print_med("\n- Excelente... realmente excelente...")
+                print_med("- Boa sorte, {}, vai precisar...".format(name))
+                print_long("\n> Um clarão te cega e você desmaia, caíndo no que parece ser o infinito.")
+
+            else:
+                time.sleep(1)
+                print_med("\n- Que assim seja.")
+                quit()
+
+        else:
+            print_med("- Infelizmente você não cumpriu o requisito para continuar a aventura...")
+            print_long("- Mas não é nada pessoal, entenda; é a burocracia, a papelada, essas coisas, sabe?")
+            print_med("\n- Bom, acho que isso é um adeus, {}.".format(name))
+            quit()
+
+
 def path_2_shop():
-    """Cuida do funcionamento da loja.
+    """Takes care of the shop.
     """
     global is_dead
     global bag
@@ -199,7 +236,7 @@ def path_2_shop():
 
 
 def path_2_house():
-    """Cuida da visita à casa.
+    """Takes care of the strange house.
     """
     global is_dead
     global money
@@ -258,7 +295,7 @@ def path_2_house():
 
 
 def path_2_scarecrow():
-    """Cuida do caminho que leva à plantação e ao espantalho.
+    """Takes care of the scarecrow encounter.
     """
     global is_dead
     global bag
@@ -288,7 +325,6 @@ def path_2_scarecrow():
                         "\n- Mas o que ocê veio fazer aqui de novo, uai? Cê me perdoa mas eu não vou te dar mais nenhuma batatinha não, viu!")
                     print_fast("- Então pode ir dando a volta, uma já basta.")
                     print_med("> Você dá meia volta e se afasta da plantação.")
-                    continue
 
                 else:
                     print(
@@ -387,21 +423,18 @@ def path_2_scarecrow():
 
                             else:
                                 print("\n- Sim ou não, uai!\n")
-                                continue
 
                         break
 
                     else:
                         input_error()
-                        continue
 
         else:
             input_error()
-            continue
 
 
 def scarecrow_game():
-    """Começa o jogo de adivinhação do espantalho.
+    """Plays the scarecrow's guessing game.
     """
     global farm_guesses
     global farm_potatoes
@@ -427,14 +460,13 @@ def scarecrow_game():
                 print_long("\n{ BATATA ADQUIRIDA }\n")
                 print_med("- Bom agora que ocê já tem essa belezura acho que já pode ir embora...\n")
                 print_med("> Com a saborosa batata guardada, você se despede do espantalho e sai da plantação.")
-                continue
 
         except ValueError:
             print("\n- É pra escolher um número, sô!\n")
 
 
 def main():
-    """Função principal do jogo. O caminho que leva ao final do jogo está aqui, todos os outros que levam para "becos" (caminhos que não levam para outros) são funções próprias
+    """Main path of the game, all the different choices that result in a dead end (that don't have another branch) will branch from here.
     """
     global is_dead
 
@@ -476,7 +508,6 @@ def main():
 
                 else:
                     input_error()
-                    continue
 
             elif path_1 == "esquerda":  # vila
                 print_fast("\n> Seguindo a esquerda você se depara com uma vilinha pitoresca.")
@@ -503,7 +534,6 @@ def main():
 
                     else:
                         input_error()
-                        continue
 
                 break
 
@@ -542,7 +572,6 @@ def main():
 
                 else:
                     input_error()
-                    continue
 
             else:
                 input_error()
@@ -551,34 +580,4 @@ def main():
 
 while True:
     main()
-
-    if is_dead:
-        time.sleep(3)
-        print_med("\n- Parece-me que sua aventura chegou ao fim...")
-
-        if "batata" in bag:
-            print_med("- Mas vejo que já conseguiu....")
-            print_med("- ...ela.")
-            print_med(
-                "- Pois bem, se você quiser, eu posso te levar de volta ao início. Ela ainda tem um destino para cumprir.")
-            print("- O que me diz? Sim ou não? Pense bem.")
-            reset = input(">>> Vai continuar? ").lower()
-
-            if reset == "sim":
-                is_dead = False
-                time.sleep(1)
-                print_med("\n- Excelente... realmente excelente...")
-                print_med("- Boa sorte, {}, vai precisar...".format(name))
-                print_long("\n> Um clarão te cega e você desmaia, caíndo no que parece ser o infinito.")
-                continue
-
-            else:
-                time.sleep(1)
-                print_med("\n- Que assim seja.")
-                quit()
-
-        else:
-            print_med("- Infelizmente você não cumpriu o requisito para continuar a aventura...")
-            print_long("- Mas não é nada pessoal, entenda; é a burocracia, a papelada, essas coisas, sabe?")
-            print_med("\n- Bom, acho que isso é um adeus, {}.".format(name))
-            quit()
+    death_check()
