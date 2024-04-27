@@ -7,6 +7,10 @@ Ok, calling it a game might be an exaggeration. This is just a small side projec
 I decided on a small game because I've already tried multiple times to do it before (on C++) but either failed or just abandoned it midway through,
 so now I've commited myself to actually finish it for once, hence this repository: *I wanted to get serious*.
 
+**Note:** Don't expect good code, specially because I'm doing this as I learn, so there's quite possible a lot of bad decisions being made.
+
+
+
 ---
 ### Ok but what is it about?
 
@@ -16,7 +20,7 @@ If it had images it would be like one of those point & click games, so bear that
 In your adventure, you may encounter:
 * Multiple endings
 * Multiple game overs
-* Multiple gory, bloody and *very* descriptive death messages
+* Multiple gory, bloody and _very_ descriptive death messages
 * Fun and interesting unnamed characters
 * A singular potato
 * A rift in time
@@ -34,7 +38,14 @@ I don't actually know if this is the right place to do it, but since I don't kno
 * Working death and respawn
 
 ###### **Version 1.1.0:**
-* WIP
+* WIP (check to do list)
+
+---
+### How do I play it?
+
+I don't know yet lol. I guess you could just get the code and run it? That's how this site works, right? (_genuine question_)
+
+I'll try to figure this out better eventually.
 
 ---
 ### Shouldn't this file be more useful?
