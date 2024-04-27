@@ -1,11 +1,14 @@
 Adventure.py to do list:
 
 # BIG GOALS
+> make the thing playable
 > add tavern
 > add dating sim
 > add pokémon encounter and battle
+> transfer all dialogue to a file (?)
 
 # MEDIUM GOALS
+> check better ways to do things
 > add menu
 > add language options
 > add guide
