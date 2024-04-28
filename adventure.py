@@ -6,37 +6,38 @@ def print_fast(text):
     """Prints and waits a small interval. Used for quick texts.
     """
     print(text)
-    time.sleep(1)
+    time.sleep(0)
 
 
 def print_med(text):
     """Print and waits a slight bigger interval. Used for dialogues.
     """
     print(text)
-    time.sleep(2)
+    time.sleep(0)
 
 
 def print_long(text):
     """Prints and waits a big interval. Used for dramatic pauses.
     """
     print(text)
-    time.sleep(4)
+    time.sleep(0)
 
 
 name = input("Insira seu nome: ")
 
-print("- Bem-vindo, {}, a essa aventura!".format(name))
+print(f"- Bem-vindo, {name}, a essa aventura!")
 
 print("\nPara as respostas, por favor limite-se a opções simples como: ")
 print_long("Direita, esquerda, frente, atacar, voltar, etc.")
 
-print_med("\n- Agora, {}, sua aventura pode começar...".format(name))
+print_med(f"\n- Agora, {name}, sua aventura pode começar...")
 
 deaths = 0
 is_dead = False
 
-bag = ["batata", "barco"]
+bag = ["barco"]
 money = 0
+potato_in_bag = False
 
 shop = ""
 store = ["Barco? ", "Corda? ", "Vela? "]
@@ -71,23 +72,24 @@ def death_messages(num):
                 ]
 
     print_med(messages[num])
-    print_med("Final: {} de {} | Vistos: {}".format(num + 1, len(messages), deaths))
+    print_med(f"Final: {num + 1} de {len(messages)} | Vistos: {deaths}")
 
 
 def input_error():
     """Randomly picks an error message to print if the user inputs something that they shouldn't.
     """
-    errors = ["> Isso não é válido agora, ",
-              "> Acho que não dá para fazer isso agora, ",
-              "> Não tem como você fazer isso, ",
-              "> Não é a hora para isso, ",
-              "> Outra coisa talvez funcione, ",
-              "> Não, isso não tá certo, ",
-              "> Procure outra escolha, ",
-              "> No momento, essa não é uma escolha boa, ",
-              "> Tente escolher uma opção plausível, "]
+    errors = ["> Isso não é válido agora,",
+              "> Acho que não dá para fazer isso agora,",
+              "> Não tem como você fazer isso,",
+              "> Não é a hora para isso,",
+              "> Outra coisa talvez funcione,",
+              "> Não, isso não tá certo,",
+              "> Procure outra escolha,",
+              "> No momento, essa não é uma escolha boa,",
+              "> Tente escolher uma opção plausível,"
+              ]
 
-    print_fast(random.choice(errors) + "{}.".format(name))
+    print_fast(f"{random.choice(errors)} {name}.")
 
 
 def death_check():
@@ -100,11 +102,10 @@ def death_check():
         time.sleep(3)
         print_med("\n- Parece-me que sua aventura chegou ao fim...")
 
-        if "batata" in bag:
+        if potato_in_bag:
             print_med("- Mas vejo que já conseguiu....")
             print_med("- ...ela.")
-            print_med(
-                "- Pois bem, se você quiser, eu posso te levar de volta ao início. Ela ainda tem um destino para cumprir.")
+            print_med("- Pois bem, se você quiser, eu posso te levar de volta ao início. Ela ainda tem um destino para cumprir.")
             print("- O que me diz? Sim ou não? Pense bem.")
             reset = input(">>> Vai continuar? ").lower()
 
@@ -112,7 +113,7 @@ def death_check():
                 is_dead = False
                 time.sleep(1)
                 print_med("\n- Excelente... realmente excelente...")
-                print_med("- Boa sorte, {}, vai precisar...".format(name))
+                print_med(f"- Boa sorte, {name}, vai precisar.")
                 print_long("\n> Um clarão te cega e você desmaia, caíndo no que parece ser o infinito.")
 
             else:
@@ -123,7 +124,7 @@ def death_check():
         else:
             print_med("- Infelizmente você não cumpriu o requisito para continuar a aventura...")
             print_long("- Mas não é nada pessoal, entenda; é a burocracia, a papelada, essas coisas, sabe?")
-            print_med("\n- Bom, acho que isso é um adeus, {}.".format(name))
+            print_med(f"\n- Bom, acho que isso é um adeus, {name}.")
             quit()
 
 
@@ -132,56 +133,52 @@ def path_2_shop():
     """
     global is_dead
     global bag
+    global potato_in_bag
     global money
     global shop
     global store
     global shop_visits
     global shop_visits_potato
 
-    if "batata" in bag and not shop_visits_potato:
+    if potato_in_bag and not shop_visits_potato:
         print_med("\n> Você entra na loja e o vendedor começa a fungar, como se estivesse cheirando algo.")
-        print_long(
-            "- Isso é... Tem que ser... Não tem como confundir! Você conseguiu uma batata daquele espantalho! Elas são queridas por todos da vila e até mesmo por monstros!")
-        print_long(
-            "- Hm esse cheiro de batata me deixou com fome... Eu não vou conseguir trabalhar com o desejo da batata...")
-        print_long(
-            "- Ei, o que acha de você me vender essa batata? Vamos lá, eu te vendi o barco, lembra? Eu pago bem por ela, é sério! E aí? Sim ou não?\n")
+        print_long("- Isso é... Tem que ser... Não tem como confundir! Você conseguiu uma batata daquele espantalho! Elas são tão...")
+        print_long("- ...preciosas.")
+        print_long("- Hm esse cheiro de batata me deixou com fome... Eu não vou conseguir trabalhar com o desejo da batata...")
+        print_long("- Ei, o que acha de você me vender essa batata? Vamos lá, eu te vendi o barco, lembra? Eu pago bem por ela, é sério! E aí? Sim ou não?\n")
 
         potato_bargain = input(">>> Você vende a batata? ").lower()
         if potato_bargain == "sim":
             time.sleep(1)
-            print_med(
-                "\n> Você está prestes a colocar a batata no balcão mas não encontra forças para isso. E como se a batata não quisesse se separar de você...")
-            print_med("> Você desiste e guarda a batata na mochila")
-            print_long("> O vendedor te olha furioso")
+            print_long("\n> Você está prestes a colocar a batata no balcão mas não encontra forças para isso. E como se a batata não quisesse se separar de você...")
+            print_med("> Você desiste e guarda a batata na mochila.")
+            print_long("> O vendedor te olha furioso.")
             print_med("> E se joga em cima de você.")
 
             is_dead = True
             death_messages(5)
             return
 
-        elif potato_bargain == "não":
+        elif potato_bargain == "não" or "nao":
             shop_visits_potato = True
             money += 1
             time.sleep(1)
             print_med("\n- Bom a batata é sua, então você decide. Mas saiba que perdeu uma oferta milionária!")
             print_med("- O problema é que agora é que fiquei com fome e nem é horário de almoço ainda...")
-            print_med(
-                "- Que tal assim: eu te dou um dinheiro como compensação por não te atender agora, você sai daqui e eu faço meu lanchinho!")
+            print_med("- Que tal assim: eu te dou um dinheiro como compensação por não te atender agora, você sai daqui e eu faço meu lanchinho!")
             print_med("- Sim, eu sei que eu sou generoso.")
             print_long("\n{ 1 DINHEIRO ADQUIRIDO }\n")
-            print_long("> Você agora tem {} dinheiro!".format(money))
+            print_long(f"> Você agora tem {money} dinheiro!")
             print_fast("\n> Você sai da loja para o vendedor comer e confuso quanto ao poder da batata")
 
     if store[0] == "" and store[1] == "" and store[2] == "":
-        print_fast(
-            "\n- Bom me desculpe, mas você já comprou tudo que eu tinha! Volte aqui quando eu tiver novos produtos.")
+        print_fast("\n- Bom me desculpe, mas você já comprou tudo que eu tinha! Volte aqui quando eu tiver novos produtos.")
 
     elif shop_visits == 0:
         shop_visits += 1
         time.sleep(1)
         print("\n- Ora vejam só um freguês novo! Faz um bom tempo que não recebo dinheiro vindo de outras bandas!")
-        print("- {} {} {} É tudo seu, isso se você tiver o dinheiro suficiente!".format(store[0], store[1], store[2]))
+        print(f"- {store[0]}{store[1]}{store[2]} É tudo seu, isso se você tiver o dinheiro suficiente!")
         shop = input("- Então, o que vai ser? ").lower()
 
     else:
@@ -192,7 +189,7 @@ def path_2_shop():
             time.sleep(1)
             print("\n- Você de novo? Bom, já sabe:")
 
-        print("- {} {} {} Tudo pode ser seu com um pouco de dinheiro".format(store[0], store[1], store[2]))
+        print(f"-{store[0]}{store[1]}{store[2]} Tudo pode ser seu com um pouco de dinheiro")
         shop = input("- Então, já se decidiu? ").lower()
 
     if shop == "barco" and store[0] == "Barco? ":
@@ -235,12 +232,35 @@ def path_2_shop():
         print_fast("\n- Acho que não temos isso no estoque, meu bom. Por que você não procura lá fora?")
 
 
+def house_hints():
+    global farm_potatoes
+
+    hints = ["  ~ Há um rio perto da vila, você precisa de algo para desviar das piranhas.",
+             "  ~ A taverna é um bom lugar para conseguir dinheiro.",
+             "  ~ A floresta é perigosa no escuro.",
+             f"  ~ Menos que {farm_potatoes + 25}, eu diria.",
+             f"  ~ Mais que {farm_potatoes - 25}, se tivesse que chutar.",
+             "  ~ Há coisas muito poderosas nesse mundo.",
+             "  ~ Todo lugar tem algo importante.",
+             f"  ~ {name} não é um nome comum aqui.",
+             "  ~ Dizem que alguém se perdeu na floresta e nunca mais voltou.",
+             "  ~ ...o fim nunca é o fim nunca é o fim nunca é o fim nunca é o fim nunca é o fim nunca é..."
+             ]
+    
+    chosen = random.sample(hints, 3)
+    print_fast(f"{chosen[0]}")
+    print_fast(f"{chosen[1]}")
+    print_fast(f"{chosen[2]}")
+
+
+
 def path_2_house():
     """Takes care of the strange house.
     """
     global is_dead
     global money
     global bag
+    global potato_in_bag
     global house_visits
     global house_visits_potato
 
@@ -251,7 +271,7 @@ def path_2_house():
             answer = input("\n- Hm seu rosto é novo por aqui... Qual seu nome? ")
 
             if answer != name:
-                print_med("\n- É MENTIRA!!!! Eu sei tudo sobre você, inclusive o que vai acontecer agora!")
+                print_med(f"\n- É MENTIRA!!!! Eu sei tudo sobre você, {name} inclusive o que vai acontecer agora!")
 
                 is_dead = True
                 death_messages(1)
@@ -262,36 +282,36 @@ def path_2_house():
                 print_fast("\n- Bom eu já sabia disso, só queria checar sua honestidade.")
                 print_med("- Aqui, pega um dinheiro como recompensa. Vai lá, pode pegar, você mereceu.")
                 print_long("\n{ 1 DINHEIRO ADQUIRIDO }\n")
-                print_long("> Você agora tem {} dinheiro!".format(money))
+                print_long(f"> Você agora tem {money} dinheiro!")
+                print_fast("\n- Se você veio aqui imagino que esteja procurando por direções...")
+                print_med("- Não posso dizer exatamente seu destino, mas posso lhe oferecer dicas:\n")
+
+        elif house_visits > 0:
+            print_fast("\n- Hugh, você de novo? Quer mais dicas ou quer que eu repita? Que seja:\n")
 
         house_visits += 1
-        print_fast("\n- Se você veio aqui imagino que esteja procurando por direções...")
-        print_med("- Não posso dizer exatamente seu destino, mas posso lhe oferecer dicas:")
-        print_fast("\n  ~ Há um rio perto da vila, você precisa de algo para desviar das piranhas.")
-        print_fast("  ~ A taverna é um bom lugar para conseguir dinheiro.")
-        print_med("  ~ A floresta é perigosa no escuro.")
+
+        house_hints()
         print_med("\n- Isso é tudo que tenho a dizer, e não tenho tanta paciência então maneire nas visitas.")
         print_med("> Ela te empurra para fora da casa e fecha a porta na sua cara.")
 
-        if "batata" in bag and not house_visits_potato:
+        if potato_in_bag and not house_visits_potato:
             house_visits += 4
             time.sleep(2)
-            print_med(
-                "\n- Na verdade tem mais uma coisa... Tem a ver com essa sua batata cuja presença é difícil de não notar")
-            print_long(
-                "- Muitos vão cobiça-la, mas eu sei que você vai dá-la apenas para quem a merece, mesmo que esse seja um sujeito diferente...")
+            print_med("\n> Você está prestes a sair quando ouve a porta runhir.")
+            print_med("\n- Na verdade tem mais uma coisa... Tem a ver com essa sua batata cuja presença é difícil de não notar.")
+            print_long("- Muitos vão cobiça-la, mas eu sei que você vai dá-la apenas para quem a merece, mesmo que esse seja um sujeito diferente...")
             print_long("- Eu mesma sinto uma certa atração por tamanho vegetal... Mas consigo me conter... Eu acho...")
-            print_med(
-                "- Na verdade é melhor você sair logo daqui com ela, antes que eu perca a razão. Confie em mim, é para o bem de nós dois.")
+            print_med("- Na verdade é melhor você sair logo daqui com ela, antes que eu perca a razão. Confie em mim, é para o bem de nós dois.")
             print_fast("\n> Você sai da casa apreensivo quanto ao destino da batata e escuta a porta sendo trancada.")
 
     elif house_visits == 3:
         house_visits += 1
         print_fast("\n- Já falei que não quero você me visitando toda hora! Sai fora daqui de uma vez!")
-        print_med("> Você é empurrado para fora da casa e escuta a porta sendo trancada.\n")
+        print_med("> Você é empurrado para fora da casa e escuta a porta sendo trancada.")
 
     elif house_visits > 3:
-        print_med("\n> É inútil, a porta está trancada")
+        print_fast("\n> É inútil, a porta está trancada")
 
 
 def path_2_scarecrow():
@@ -299,6 +319,7 @@ def path_2_scarecrow():
     """
     global is_dead
     global bag
+    global potato_in_bag
     global farm_guesses
     global farm_visits
     global scarecrow_visits
@@ -309,8 +330,7 @@ def path_2_scarecrow():
     print_fast("> Você atraca o barco num pilar de madeira convenientemente colocado e segue reto.")
 
     while True:
-        print(
-            "\n> No horizonte a frente, você avista uma extensa plantação com o que parece ser um homem parado no centro.")
+        print("\n> No horizonte a frente, você avista uma extensa plantação com o que parece ser um homem parado no centro.")
         path_3 = input(">>> Qual caminho você vai escolher? ")
 
         if path_3 == "voltar":
@@ -318,17 +338,15 @@ def path_2_scarecrow():
             break
 
         elif path_3 == "frente":
-            if "batata" in bag:
+            if potato_in_bag:
                 if scarecrow_visits_potato < 2:
                     scarecrow_visits_potato += 1
-                    print_fast(
-                        "\n- Mas o que ocê veio fazer aqui de novo, uai? Cê me perdoa mas eu não vou te dar mais nenhuma batatinha não, viu!")
-                    print_fast("- Então pode ir dando a volta, uma já basta.")
+                    print_fast("\n- Mas o que ocê veio fazer aqui de novo, uai? Cê me perdoa mas eu não vou te dar mais nenhuma batatinha não, viu!")
+                    print_med("- Então pode ir dando a volta, uma já basta.")
                     print_med("> Você dá meia volta e se afasta da plantação.")
 
                 else:
-                    print(
-                        "\n- Ok agora já chega! Ocê já tem uma batata, se tá vindo aqui toda hora de novo é porque quer roubar mais uma!")
+                    print("\n- Ok agora já chega! Ocê já tem uma batata, se tá vindo aqui toda hora de novo é porque quer roubar mais uma!")
                     print_med("- Pois eu não vou deixar não, uai!")
 
                     is_dead = True
@@ -336,24 +354,35 @@ def path_2_scarecrow():
                     return
 
             else:
-                print("\n> Avançando um pouco mais, você consegue ver que se trata de uma enorme plantação de batatas.")
-
                 if not farm_seen:
                     farm_seen = True
-                    print(
-                        "> Em uma inspeção mais próxima, você vê que o misterioso homem é na verdade um grande espantalho.")
-                    print_fast("> Ele parece se movimentar um pouco, talvez seja devido ao vento.")
+                    print_fast("\n> Avançando um pouco mais, você consegue ver que se trata de uma enorme plantação de batatas.")
+                    print_fast("> Em uma inspeção mais próxima, você vê que o misterioso homem é na verdade um grande espantalho.")
+                    print_med("> Ele parece se movimentar um pouco, talvez seja devido ao vento.\n")
+
+                elif farm_seen and not scarecrow_visits:
+                    print_med("\n> O espantalho continua balançando solitariamente no campo de batatas.\n")
 
                 else:
-                    print_fast("> O espantalho continua balançando na plantação.")
+                    print_med("\n> O espantalho vigia atentamente suas batatas a procura de pessoas como você.\n")
 
                 while True:
-                    print("\n> A fragrância batatal te enche de determinação.")
-                    path_4 = input(">>> Você pode tentar pegar uma batata ou ir embora. O que fazer? ")
+                    if farm_visits == 0:
+                        print("> A fragrância batatal te enche de determinação.")
+                        path_4 = input(">>> Você pode tentar pegar uma batata ou ir embora. O que fazer? ")
+                    
+                    else:
+                        path_4 = input("\n- Oia sô, ocê voltou! Vai tenta pega minhas batata dinovo? ")
 
                     if path_4 == "voltar":
-                        print_fast("\n> Enquanto volta, pelo canto do olho, você percebe o espantalho se movendo.")
-                        break
+                        if not scarecrow_visits:
+                            print_fast("\n> Enquanto volta, pelo canto do olho, você percebe o espantalho se movendo.")
+                            break
+                    
+                        else:
+                            print_fast("\n- Inté!")
+                            print_med("> Você vai embora acenando para o espantalho enquanto se questiona como ele fala.")
+                            break
 
                     elif path_4 == "pegar":
 
@@ -362,25 +391,26 @@ def path_2_scarecrow():
                             print_med("\n> Você se prepara para puxar uma batata suculenta da terra.")
                             print_med("> O espantalho se move.")
                             print_med("\n- EI! EI! EI! Pode ir parando aí, sô! Tá pegando minhas batata porque?")
-                            print_long(
-                                "- Essas batatinhas são minhas e só minhas! Tira essas mãos de gente da cidade delas! Vai matar as coitada!")
+                            print_long("- Essas batatinhas são minhas e só minhas! Tira essas mãos di gente da cidade delas! Vai matar as coitada!")
                             print_long("- Nem adianta tenta pega elas, eu tô sempre de vigia, sô!\n")
-                            print("- Então, o que é que ocê faz aqui no meu batatal?")
+                            print("- Mas intão, o que é que ocê faz aqui no meu batatal?")
                             print_med("- Quer uma batata, né? Elas são muito preciosa pra mim...")
-                            print_long(
-                                "- Mas eu acho que posso te dar uma, sô. Se ocê conseguir adivinhar quantas batata tem aqui na minha plantação todinha!")
+                            print_long("- Mas eu acho que posso te dar uma, sô. Se ocê conseguir adivinhar quantas batata tem aqui na minha plantação todinha!")
 
                         else:
-                            print("\n- Oia, oia, sô, já falei pra não pegar a batata assim!")
-                            print_med("- Eu sei que ocê quer muito conseguir uma, então é só ganhar no meu jogo, ora!")
+                            if farm_visits == 0:
+                                print("\n- Oia, oia, sô, já falei pra não pegar a batata assim!")
+                                print_med("- Eu sei que ocê quer muito conseguir uma, então é só ganhar no meu jogo, ora!")
+                            
+                            else:
+                                print_med("\n- Na minha cara, sô? Tem vergonha não? Já te disse quié só ganhar meu jogo!")
 
                         while True:
-                            potato_game = input("- E aí? Vai tentar? Sim ou não? ").lower()
+                            potato_game = input("- Iaí? Vai tentar? Sim ou não? ").lower()
 
-                            if potato_game == "não":
+                            if potato_game == "não" or potato_game == "nao":
                                 print_fast("\n- Uai, então pode ir embora!")
-                                print_fast(
-                                    "\n> Você sai da plantação de batatas sendo desaprovadamente encarado pelo espantalho.")
+                                print_med("> Você sai da plantação de batatas sendo desaprovadamente encarado pelo espantalho.")
                                 break
 
                             elif potato_game == "sim":
@@ -388,10 +418,8 @@ def path_2_scarecrow():
 
                                 if farm_visits == 0:
                                     farm_visits += 1
-                                    print_fast(
-                                        "\n- Seguinte, fi, ocê tem 6 chance pra adivinhar quantas batata tem aqui.")
-                                    print_long(
-                                        "- Eu posso dá umas dica: tá entre 100 e 200 e eu vou avisando se ocê tá próximo!")
+                                    print_fast("\n- Seguinte, fi, ocê tem 6 chance pra adivinhar quantas batata tem aqui.")
+                                    print_long("- Eu posso dá umas dica: tá entre 100 e 200 e eu vou avisando se ocê tá próximo!")
                                     print_med("- Certinho? Então podemo começa!")
 
                                 else:
@@ -401,22 +429,20 @@ def path_2_scarecrow():
 
                                 scarecrow_game()
 
-                                if "batata" not in bag:
+                                if not potato_in_bag:
                                     if farm_visits < 3:
-                                        print_fast(
-                                            "\n- Uai, não conseguiu adivinhar? Mas se quiser dá pra tentar de novo outra vez, sô!")
+                                        print_fast("\n- Uai, não conseguiu adivinhar? Mas se quiser dá pra tentar de novo outra vez, sô!")
 
                                     elif farm_visits == 3:
                                         print_fast("> O espantalho olha sua direção com raiva.")
-                                        print(
-                                            "\n- Caramba mas ocê já tentou 3 vezes e ainda não conseguiu? Ocê é ruim demais, uai!")
+                                        print("\n- Caramba mas ocê já tentou 3 vezes e ainda não conseguiu? Ocê é ruim demais, uai!")
                                         print_med("- Se quer tanto minhas batata, toma essa logo, sô!")
 
                                         is_dead = True
                                         death_messages(3)
                                         return
 
-                                    print_fast("> Você sai da plantação cabisbaixo com a derrota.")
+                                    print_med("> Você sai da plantação cabisbaixo com a derrota.")
                                     break
 
                                 break
@@ -439,21 +465,23 @@ def scarecrow_game():
     global farm_guesses
     global farm_potatoes
     global bag
+    global potato_in_bag
 
     while farm_guesses < 6:
         try:
             guess = int(input(">>> Escolha um número: "))
 
             if guess > farm_potatoes and farm_guesses < 5:
-                print("\n- Mais pra baixo!\n")
+                print_fast("\n- Mais pra baixo!\n")
 
             elif guess < farm_potatoes and farm_guesses < 5:
-                print("\n- Pode subi que é mais pra cima!\n")
+                print_fast("\n- Pode subi que é mais pra cima!\n")
 
             farm_guesses += 1
 
             if guess == farm_potatoes:
                 farm_guesses += 6
+                potato_in_bag = True
                 bag.append("batata")
                 print_med("\n- ISSO MERMO! Acertou na mosca, sô!")
                 print_med("- Tô impressionado! Acho que ocê merece uma batata minha finalmente...")
@@ -473,8 +501,7 @@ def main():
     print_fast("\n> Você acorda jogado no chão de terra, sem nenhuma lembrança do que lhe ocorreu.")
 
     while True:
-        print(
-            "\n> A sua frente há uma bifurcação no caminho, que vai para a direita ou esquerda. Atrás de você há uma grande e misteriosa floresta a qual você pode voltar.")
+        print("\n> A sua frente há uma bifurcação no caminho, que vai para a direita ou esquerda. Atrás de você há uma grande e misteriosa floresta a qual você pode voltar.")
         path_1 = input(">>> Qual direção você pretende seguir? ").lower()
 
         while True:
@@ -489,6 +516,7 @@ def main():
                 path_2 = input(">>> Para onde é melhor ir? ").lower()
 
                 if path_2 == "voltar":
+                    print_fast("\n> Você se afasta do rio.")
                     break
 
                 elif path_2 == "frente":  # espantalho
@@ -513,8 +541,7 @@ def main():
                 print_fast("\n> Seguindo a esquerda você se depara com uma vilinha pitoresca.")
 
                 while True:
-                    print(
-                        "\n> Há uma pequena loja à esquerda, uma casa suspeita em frente e à direita, uma taverna animada")
+                    print("\n> Há uma pequena loja à esquerda, uma casa suspeita em frente e à direita, uma taverna animada.")
                     path_2 = input(">>> Qual direção você pretende seguir? ").lower()
 
                     if path_2 == "voltar":
@@ -538,12 +565,11 @@ def main():
                 break
 
             elif path_1 == "voltar":  # floresta
-                print(
-                    "\n> Avançando para a floresta, o breu escurece sua vista. Você pode tentar desbravar em frente ou voltar para a segurança.")
+                print("\n> Avançando para a floresta, o breu escurece sua vista. Você pode tentar desbravar em frente ou voltar para a segurança.")
                 path_2 = input(">>> Qual direção você vai tomar? ").lower()
 
                 if path_2 == "frente" and "vela" not in bag:
-                    if "batata" in bag:
+                    if potato_in_bag:
                         print("\n> A escuridão te apavora e você pega sua batata para te confortar.")
                         print_med("> Passos de algum ser ficam mais próximos.")
 
@@ -559,7 +585,7 @@ def main():
                         return
 
                 elif path_2 == "frente" and "vela" in bag:
-                    if "batata" not in bag:
+                    if not potato_in_bag:
                         print("\n> Avançando com a vela, você consegue iluminar uma parte da floresta.")
                         print_med("> Um goblin aparentemente esfomeado aparece no seu campo de visão diminuto.")
 
