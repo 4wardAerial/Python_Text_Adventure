@@ -1,4 +1,4 @@
-Adventure.py to do list:
+Adventure.py to do expanding list:
 
 # BIG GOALS
 [ ] make the thing playable
