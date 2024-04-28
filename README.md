@@ -21,6 +21,7 @@ In your adventure, you may encounter:
 * Multiple endings
 * Multiple game overs
 * Multiple gory, bloody and _very_ descriptive death messages
+* Beautiful and high quality art 
 * Fun and interesting unnamed characters
 * A singular potato
 * A rift in time
