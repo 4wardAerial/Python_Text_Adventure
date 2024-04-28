@@ -26,4 +26,4 @@ Adventure.py to do expanding list:
 [x] add potato_in_bag bool
 [x] check text in farm
 [ ] change some deaths
-[ ] try adding ASCII drawings? For the itens at least
+[X] try adding ASCII drawings? For the itens at least
