@@ -54,7 +54,7 @@ I'll try to figure this out better eventually.
 Probably. But since I'm learning, I get a pass.
 
 ---
-### License
+### License and Credits
 
-Me I guess?
+Me I guess? And kudos for [this site](https://manytools.org/hacker-tools/convert-images-to-ascii-art/) that handled the ASCII image conversion.
 
