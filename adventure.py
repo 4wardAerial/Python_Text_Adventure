@@ -1,4 +1,5 @@
 import time
+from ascii import ascii_money, ascii_boat, ascii_rope, ascii_candle, ascii_potato
 import random
 
 
@@ -128,6 +129,15 @@ def death_check():
             quit()
 
 
+def money_get(current_money):
+    """Prints out an ascii image of a dollar bill, then says how much money the player has.
+    """
+
+    ascii_money()
+    print_long("\n{ 1 DINHEIRO ADQUIRIDO }\n")
+    print_long(f"> Você agora tem {current_money} dinheiro!")
+
+
 def path_2_shop():
     """Takes care of the shop.
     """
@@ -167,8 +177,9 @@ def path_2_shop():
             print_med("- O problema é que agora é que fiquei com fome e nem é horário de almoço ainda...")
             print_med("- Que tal assim: eu te dou um dinheiro como compensação por não te atender agora, você sai daqui e eu faço meu lanchinho!")
             print_med("- Sim, eu sei que eu sou generoso.")
-            print_long("\n{ 1 DINHEIRO ADQUIRIDO }\n")
-            print_long(f"> Você agora tem {money} dinheiro!")
+
+            money_get(money)
+
             print_fast("\n> Você sai da loja para o vendedor comer e confuso quanto ao poder da batata")
 
     if store[0] == "" and store[1] == "" and store[2] == "":
@@ -189,7 +200,7 @@ def path_2_shop():
             time.sleep(1)
             print("\n- Você de novo? Bom, já sabe:")
 
-        print(f"-{store[0]}{store[1]}{store[2]} Tudo pode ser seu com um pouco de dinheiro")
+        print(f"- {store[0]}{store[1]}{store[2]} Tudo pode ser seu com um pouco de dinheiro")
         shop = input("- Então, já se decidiu? ").lower()
 
     if shop == "barco" and store[0] == "Barco? ":
@@ -197,8 +208,11 @@ def path_2_shop():
             print_fast("\n- Mas você não tem nenhum dinheiro! Some daqui!")
         else:
             money -= 1
-            print_med("\n- Pois bem aqui está seu barco, não me pergunte como você vai guardar isso.")
+            print_med("\n- Pois bem aqui está seu barco, não me pergunte como você vai guardar isso.\n")
+
+            ascii_boat()
             print_long("\n{ BARCO ADQUIRIDO }")
+
             bag.append("barco")
             store.remove("Barco? ")
             store.insert(0, "")
@@ -208,8 +222,11 @@ def path_2_shop():
             print_fast("\n- Eu vou é te amarrar com a corda se você vier aqui sem dinheiro de novo!")
         else:
             money -= 1
-            print_med("\n- Uma corda para outra corda... ou algo assim, não sei.")
+            print_med("\n- Uma corda para outra corda... ou algo assim, não sei.\n")
+
+            ascii_rope()
             print_long("\n{ CORDA ADQUIRIDA }")
+
             bag.append("corda")
             store.remove("Corda? ")
             store.insert(1, "")
@@ -219,8 +236,11 @@ def path_2_shop():
             print_fast("\n- A chama queimou seu dinheiro? Não? Então volta com um!")
         else:
             money -= 1
-            print_med("\n- Aqui está! Ela ilumina muito bem! Mas acho que você já sabe disso...")
+            print_med("\n- Aqui está! Ela ilumina muito bem! Mas acho que você já sabe disso...\n")
+
+            ascii_candle()
             print_long("\n{ VELA ADQUIRIDA }")
+
             bag.append("vela")
             store.remove("Vela? ")
             store.insert(2, "")
@@ -280,9 +300,10 @@ def path_2_house():
             else:
                 money += 1
                 print_fast("\n- Bom eu já sabia disso, só queria checar sua honestidade.")
-                print_med("- Aqui, pega um dinheiro como recompensa. Vai lá, pode pegar, você mereceu.")
-                print_long("\n{ 1 DINHEIRO ADQUIRIDO }\n")
-                print_long(f"> Você agora tem {money} dinheiro!")
+                print_med("- Aqui, pega um dinheiro como recompensa. Vai lá, pode pegar, você mereceu.\n")
+
+                money_get(money)
+
                 print_fast("\n- Se você veio aqui imagino que esteja procurando por direções...")
                 print_med("- Não posso dizer exatamente seu destino, mas posso lhe oferecer dicas:\n")
 
@@ -462,10 +483,10 @@ def path_2_scarecrow():
 def scarecrow_game():
     """Plays the scarecrow's guessing game.
     """
-    global farm_guesses
-    global farm_potatoes
     global bag
     global potato_in_bag
+    global farm_guesses
+    global farm_potatoes
 
     while farm_guesses < 6:
         try:
@@ -484,8 +505,11 @@ def scarecrow_game():
                 potato_in_bag = True
                 bag.append("batata")
                 print_med("\n- ISSO MERMO! Acertou na mosca, sô!")
-                print_med("- Tô impressionado! Acho que ocê merece uma batata minha finalmente...")
+                print_med("- Tô impressionado! Acho que ocê merece uma batata minha finalmente...\n")
+
+                ascii_potato()
                 print_long("\n{ BATATA ADQUIRIDA }\n")
+
                 print_med("- Bom agora que ocê já tem essa belezura acho que já pode ir embora...\n")
                 print_med("> Com a saborosa batata guardada, você se despede do espantalho e sai da plantação.")
 
