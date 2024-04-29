@@ -27,3 +27,5 @@ Adventure.py to do expanding list:
 [x] check text in farm
 [ ] change some deaths
 [X] try adding ASCII drawings? For the itens at least
+[ ] change timing in messages (too fast rn)
+[ ] change repeating dialogue 
