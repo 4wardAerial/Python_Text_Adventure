@@ -1,43 +1,8 @@
 import time
-from ascii import ascii_money, ascii_boat, ascii_rope, ascii_candle, ascii_potato
 import random
-
-
-def print_fast(text):
-    """Prints and waits a small interval. Used for quick texts.
-    """
-    print(text)
-    time.sleep(1)
-
-
-def print_med(text):
-    """Print and waits a slight bigger interval. Used for dialogues.
-    """
-    print(text)
-    time.sleep(2)
-
-
-def print_long(text):
-    """Prints and waits a big interval. Used for dramatic pauses.
-    """
-    print(text)
-    time.sleep(4)
-
-
-def menu():
-    print("> O JOGO DE TEXTO <")
-    print("\n(jogar)")
-    print("(opções)")
-    print("(créditos)")
-    print("(sair)")
-
-
-
-name = input("Insira seu nome: ")
-
-print(f"- Bem-vindo, {name}, a essa aventura!")
-print_med("\nPara as respostas, por favor limite-se às opções simples sugeridas.")
-print_long(f"\n- Agora, {name}, sua aventura pode começar...")
+from ascii import *
+from menu import *
+from printsleep import *
 
 deaths = 0
 is_dead = False
@@ -199,6 +164,7 @@ def path_2_shop():
             money_get(money)
 
             print_med("\n> Você sai da loja para o vendedor comer e confuso quanto ao poder da batata")
+            return
 
     if store[0] == "" and store[1] == "" and store[2] == "":
         print_med("\n- Bom me desculpe, mas você já comprou tudo que eu tinha! Volte aqui quando eu tiver novos produtos.")
@@ -563,6 +529,9 @@ def main():
     """
     global is_dead
 
+    if main_menu == 0:
+        quit()
+
     print_med("\n> Você acorda jogado no chão de terra, sem nenhuma lembrança do que lhe ocorreu.")
 
     while True:
@@ -681,5 +650,13 @@ def main():
 
 
 while True:
+    main_menu()
+
+    if main_menu == 0:
+        quit()
+
+    else:
+        name = main_menu
+        
     main()
     death_check()
