@@ -38,15 +38,24 @@ I don't actually know if this is the right place to do it, but since I don't kno
 * Working shop, farm and strange house paths
 * Working death and respawn
 
-###### **Version 1.1.0:**
-* WIP (check to do list)
+###### **Version 1.1.1:**
+* Added working starting menu
+* Added (ASCII) images
+* Better file structure (still trash but a bit less trash)
+* Added (perhaps too many) comments to the code
+* Fixed some bugs and formatting issues
+
+###### **Version 1.2:**
+* WIP
 
 ---
 ### How do I play it?
 
 I don't know yet lol. I guess you could just get the code and run it? That's how this site works, right? (_genuine question_)
 
-I'll try to figure this out better eventually.
+Oh and unfortunately there's still no english option. Sorry, sorry, I know there are millions of fans waiting to experience this game but, so far, I'm doing everything in brazilian portuguese.
+
+I'll try to figure all of this out better eventually.
 
 ---
 ### Shouldn't this file be more useful?
