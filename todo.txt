@@ -11,16 +11,15 @@ Adventure.py to do expanding list:
 [ ] check better ways to do things
 [ ] make better functions (remove global variables)
 [ ] character introduction and character menu
-[ ] add menu
-[ ] add language options
+[X] add main menu
 [ ] add language options
 [ ] add guide
 [ ] add interactive bag
-[ ] add credits
-[ ] add wait time speed config
+[X] add credits
+[X] add wait time speed config
 
 # SMALL GOALS
-[ ] better ending check
+[X] better ending check
 [ ] actually name the characters
 [ ] death dialogue changes for multiple deaths
 [x] add potato_in_bag bool
